@@ -8,10 +8,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var db = require('./database/db');
+import { dbUri } from './database/env';
 var app = express();
 
 //database connection 
-db.connect('mongodb+srv://admin:admin@cluster0.brc63.mongodb.net/test', function(err) {
+db.connect(dbUri, function(err) {
     if (err) {
         console.log('Unable to connect to Mongo.');
         process.exit(1);
