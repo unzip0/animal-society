@@ -7,7 +7,20 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var db = require('./database/db');
 var app = express();
+
+//database connection 
+db.connect('mongodb+srv://admin:admin@cluster0.brc63.mongodb.net/test', function(err) {
+    if (err) {
+        console.log('Unable to connect to Mongo.');
+        process.exit(1);
+    } else {
+        app.listen(3000, function() {
+            console.log('Listening on port 3000...');
+        });
+    }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
